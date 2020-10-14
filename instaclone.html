@@ -1,0 +1,79 @@
+<html>
+<head>
+	<title>insta</title>
+<style>
+button{
+	margin-right:50px;
+}
+#im{
+
+}
+</style>
+</head>
+<body style="background-color: #333333">
+	<section class="sec1">
+		<button type="button" onclick="listpictures()" style="padding-left:10px;padding-top: 5px;padding-bottom: 5px;padding-right: 10px;background-color: purple;font-size: 20px">list pictures</button>
+		<button type="button" onclick="listbylikes()" style="padding-left:10px;padding-top: 5px;padding-bottom: 5px;padding-right: 10px;background-color: purple;font-size: 20px">list pictures according to sorted likes</button>
+		<button type="button" style="padding-left:10px;padding-top: 5px;padding-bottom: 5px;padding-right: 10px;background-color: purple;font-size: 20px">list pictures according to sorted timestamp</button>
+	</section>
+	<section id="im"></section>
+<script type="text/javascript">
+	//so when page is reloaded javascript also reloads once.
+    var arr=[["https://s3-ap-southeast-1.amazonaws.com/he-public-data/insta_1b956cd6.jpg",541,"2017-04-12 14:23:45"],
+    		 ["https://s3-ap-southeast-1.amazonaws.com/he-public-data/insta_2c611827.jpeg",270,"2017-04-13 14:23:45"],
+    		 ["https://s3-ap-southeast-1.amazonaws.com/he-public-data/insta_3d151734.jpg",380,"2017-04-14 14:23:45"]];
+    var ar= [["https://s3-ap-southeast-1.amazonaws.com/he-public-data/insta_1b956cd6.jpg",541,"2017-04-12 14:23:45"],
+    		 ["https://s3-ap-southeast-1.amazonaws.com/he-public-data/insta_2c611827.jpeg",270,"2017-04-13 14:23:45"],
+    		 ["https://s3-ap-southeast-1.amazonaws.com/he-public-data/insta_3d151734.jpg",380,"2017-04-14 14:23:45"]];
+	function listpictures(){
+		//it is a complete wrap tomorrow will do sorting
+		document.getElementById('im').innerHTML='<br>';
+		document.getElementById('im').innerHTML+='<input type="text" style="margin-left:1500px" id="search"><button type="button" onclick="searchFun()"><a href="" id="sea" style="text-decoration:none">SEARCH</a></button><br>';
+		for(i=0;i<3;i++){
+		document.getElementById('im').innerHTML+='<img src="" id="imi" alt="kj" style="height:500px;width:500px">';
+		document.getElementById('imi').id='im'+i;
+		document.getElementById('im'+i).src=arr[i][0];
+		document.getElementById('im').innerHTML+='<br>';
+		document.getElementById('im').innerHTML+='Likes:';
+		document.getElementById('im').innerHTML+=arr[i][1];
+		document.getElementById('im').innerHTML+='<br>';
+		document.getElementById('im').innerHTML+='Timestamp:';
+		document.getElementById('im').innerHTML+=arr[i][2];
+		document.getElementById('im').innerHTML+='<br><br>';
+		}
+	}
+	//in javascript when we get data form html they are always in string form.
+	function searchFun(){
+		var item=document.getElementById('search').value;
+		if(item==document.getElementById('im1').src){
+			document.getElementById('sea').href="#im1";
+		}
+		else if(item==document.getElementById('im2').src)
+			document.getElementById('sea').href="#im2";
+		else if(item==document.getElementById('im3').src)
+			document.getElementById('sea').href="#im3";
+	}
+	function listbylikes(){
+		 ar.sort(sortBy);
+    function sortBy(a,b){return a[1]<b[1] ? -1 : 1;}
+		document.getElementById('im').innerHTML='<br>';
+		document.getElementById('im').innerHTML+='<input type="text" style="margin-left:1500px" id="search"><button type="button" onclick="searchFun()"><a href="" id="sea" style="text-decoration:none">SEARCH</a></button><br>';
+		var i;
+	 for(i=0;i<3;i++){
+		document.getElementById('im').innerHTML+='<img src="" alt="kj" style="height:500px;width:500px" id="imi">';
+		document.getElementById('imi').id='im'+i;
+		document.getElementById('im'+i).src=ar[i][0];
+		document.getElementById('im').innerHTML+='<br>';
+		document.getElementById('im').innerHTML+='Likes:';
+		//we should use toString to change data into string and parseInt also to change float into int
+		document.getElementById('im').innerHTML+=ar[i][1];//compulsary integer should be here
+		document.getElementById('im').innerHTML+='<br>';
+		document.getElementById('im').innerHTML+='Timestamp:';
+		document.getElementById('im').innerHTML+=ar[i][2];
+		document.getElementById('im').innerHTML+='<br><br>';
+	}
+
+	}
+</script>
+</body>
+</html>
